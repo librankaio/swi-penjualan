@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DataCustomerController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PenjualanController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,9 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
+Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::get('customer', [DataCustomerController::class, 'index'])->name('customer');
 Route::get('penjualan', [PenjualanController::class, 'index'])->name('penjualan');
