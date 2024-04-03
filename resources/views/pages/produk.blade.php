@@ -2,10 +2,10 @@
 @section('content')
 <section class="section">
     <div class="section-header">
-        <h1>Data Customer</h1>
+        <h1>Data Produk</h1>
         <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item active"><a href="#">Data Customer</a></div>
-            <div class="breadcrumb-item"><a class="text-muted">Data Customer / Pemesan</a></div>
+            <div class="breadcrumb-item active"><a href="#">Data Produk</a></div>
+            <div class="breadcrumb-item"><a class="text-muted">Data Produk / Pemesan</a></div>
         </div>
     </div>
     @php
@@ -14,77 +14,47 @@
         // $mbank_dlt = session('mbank_dlt');
     @endphp
     <div class="section-body">
-    <form action="" method="POST">
-        @csrf
         <div class="row">
             <div class="col-12 col-md-12 col-lg-12">
                 @include('layouts.flash-message')
             </div>
         </div>
-        <div class="row">
+        <div class="row">        
             <div class="col-12 col-md-6 col-lg-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Data Customer / Pemesan</h4>
-                    </div>
-                    <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Nama Pemesan</label>
-                                        <input type="text" class="form-control" name="nama" id="nama">
+                <form action="" method="POST">
+                    @csrf
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Data Barang / Produk</h4>
+                        </div>
+                        <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Nama Barang</label>
+                                            <input type="text" class="form-control" name="nama_brg" id="nama_brg">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Satuan</label>
+                                            <input type="text" class="form-control" name="satuan" id="satuan">
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Nama Penerima</label>
-                                        <input type="text" class="form-control" name="nama_penerima" id="nama_penerima">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Harga Jual</label>
+                                            <input type="text" class="form-control" name="harga" id="harga">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>No HP</label>
-                                        <input type="text" class="form-control" name="hp" id="hp">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Alamat Pengiriman</label>
-                                        <textarea class="form-control" style="height:100px" name="alamat"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-                    <div class="card-footer text-right">                            
+                        </div>
+                        <div class="card-footer text-right">                            
                             <button class="btn btn-primary mr-1" type="submit" 
                             formaction="#" id="confirm">Save</button>                                
                             <button class="btn btn-secondary" type="reset">Cancel</button>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>            
-            {{-- <div class="col-12 col-md-6 col-lg-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Data Barang / Produk</h4>
-                    </div>
-                    <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Nama Barang</label>
-                                        <input type="text" class="form-control" name="nama_barang" id="nama_barang">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Satuan</label>
-                                        <input type="text" class="form-control" name="satuan" id="satuan">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Harga Jual</label>
-                                        <input type="text" class="form-control" name="harga" id="harga">
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-                </div>
-            </div>             --}}
         </div>
         <div class="row">
             <div class="col-12 col-md-12 col-lg-12">
@@ -132,7 +102,6 @@
                 </div>
             </div>
         </div>
-    </form>
     </div>
 </section>
 @stop

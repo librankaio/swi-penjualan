@@ -39,16 +39,16 @@
                                         <input type="date" class="form-control" name="tgl_bon" value="{{ date("Y-m-d") }}">
                                     </div>
                                     <div class="form-group">
-                                        <label>Jenis</label>
-                                        <input type="text" class="form-control" name="jenis" id="jenis">
-                                    </div>
-                                    <div class="form-group">
                                         <label>Pengiriman</label>
                                         <select class="form-control select2" name="pengiriman" id="pengiriman">
                                             <option disabled selected>--Select Pengiriman--</option>
                                             <option>Ojek Online</option>
                                             <option>Pickup</option>
                                         </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>No HP</label>
+                                        <input type="text" class="form-control" name="hp" id="hp">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -63,10 +63,6 @@
                                         <input type="text" class="form-control" name="nama" id="nama">
                                     </div>
                                     <div class="form-group">
-                                        <label>No HP</label>
-                                        <input type="text" class="form-control" name="hp" id="hp">
-                                    </div>
-                                    <div class="form-group">
                                         <label>Alamat Pengiriman</label>
                                         <textarea class="form-control" style="height:100px" name="alamat"></textarea>
                                     </div>
@@ -79,7 +75,44 @@
                             <button class="btn btn-secondary" type="reset">Cancel</button>
                     </div>
                 </div>
-            </div>           
+            </div>         
+            <div class="col-12 col-md-6 col-lg-6">
+                <div class="card" style="border: 1px solid lightblue">
+                    <div class="card-header">
+                        <h4>Add Items</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Nama Barang</label>
+                                    <select class="form-control select2" id="nama_brg">
+                                        <option></option>
+                                        {{-- @foreach($mitems as $data => $item)                                        
+                                        <option value="{{ $item->code }}">{{ $item->code." - ".$item->name }}</option>
+                                        @endforeach --}}
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Harga Jual</label>
+                                    <input type="text" class="form-control" id="nama_item" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <a href="" id="addItem">
+                                        <i class="fa fa-plus" style="font-size:18pt"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-md-6">                                
+                                <div class="form-group">
+                                    <label>Satuan</label>
+                                    <input type="text" class="form-control" id="satuan" disabled>
+                                </div>                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>  
         </div>
         <div class="row">
             <div class="col-12 col-md-12 col-lg-12">

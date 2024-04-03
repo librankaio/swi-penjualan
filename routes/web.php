@@ -3,6 +3,7 @@
 use App\Http\Controllers\DataCustomerController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\ProdukController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,4 +23,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::get('customer', [DataCustomerController::class, 'index'])->name('customer');
+Route::get('produk', [ProdukController::class, 'index'])->name('produk');
 Route::get('penjualan', [PenjualanController::class, 'index'])->name('penjualan');
