@@ -49,7 +49,7 @@
                         </div>
                         <div class="card-footer text-right">                            
                             <button class="btn btn-primary mr-1" type="submit" 
-                            formaction="#" id="confirm">Save</button>                                
+                            formaction="{{ route('produkpost') }}" id="confirm">Save</button>                                
                             <button class="btn btn-secondary" type="reset">Cancel</button>
                         </div>
                     </div>
@@ -65,24 +65,26 @@
                                 <thead>
                                     <tr>
                                         <th scope="col" class="border border-5" style="text-align: center;">No</th>
-                                        <th scope="col" class="border border-5" style="text-align: center;">Kode</th>
-                                        <th scope="col" class="border border-5" style="text-align: center;">Nama</th>
+                                        <th scope="col" class="border border-5" style="text-align: center;">Nama Barang</th>
+                                        <th scope="col" class="border border-5" style="text-align: center;">Harga</th>
+                                        <th scope="col" class="border border-5" style="text-align: center;">Satuan</th>
                                         <th scope="col" class="border border-5" style="text-align: center;">Action</th>
                                     </tr>
                                 </thead>
-                                {{-- <tbody>
+                                <tbody>
                                     @php $counter = 0 @endphp
                                     @foreach($datas as $data => $item)
                                     @php $counter++ @endphp
                                     <tr>
                                         <th scope="row" class="border border-5" style="text-align: center;">{{ $counter }}</th>
-                                        <td class="border border-5" style="text-align: center;">{{ $item->code }}</td>
-                                        <td class="border border-5" style="text-align: center;">{{ $item->name }}</td>
+                                        <td class="border border-5" style="text-align: center;">{{ $item->nama_brg }}</td>
+                                        <td class="border border-5" style="text-align: center;">{{ number_format($item->hrgjual, 2, '.', ',') }}</td>
+                                        <td class="border border-5" style="text-align: center;">{{ $item->satuan }}</td>
                                         <td style="text-align: center;" class="d-flex justify-content-center">
-                                            <a href="/mwarna/{{ $item->id }}/edit"
+                                            <a href="/produk/{{ $item->id }}/edit"
                                                 class="btn btn-icon icon-left btn-primary"><i class="far fa-edit">
                                                     Edit</i></a>
-                                            <form action="/mwarna/delete/{{ $item->id }}" id="del-{{ $item->id }}"
+                                            <form action="/produk/delete/{{ $item->id }}" id="del-{{ $item->id }}"
                                                 method="POST" class="px-2">
                                                 @csrf
                                                 <button class="btn btn-icon icon-left btn-danger"
@@ -95,7 +97,7 @@
                                         </td>
                                     </tr>
                                     @endforeach
-                                </tbody> --}}
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -116,18 +118,29 @@
         $(this).parent().fadeOut(2000);
     });
 
+    // VALIDATE TRIGGER
+    $("#harga").keyup(function(e){
+        if (/\D/g.test(this.value)){
+            // Filter non-digits from input value.
+            this.value = this.value.replace(/\D/g, '');
+        }
+    });
     function submitDel(id){
         $('#del-'+id).submit()
     }
     $(document).on("click","#confirm",function(e){
         // Validate ifnull
-        kode = $("#kode").val();
-        nama = $("#nama").val();
-        if (kode == ""){
-            swal('WARNING', 'Kode Tidak boleh kosong!', 'warning');
+        nama_brg = $("#nama_brg").val();
+        satuan = $("#satuan").val();
+        harga = $("#harga").val();
+        if (nama_brg == ""){
+            swal('WARNING', 'Nama Barang Tidak boleh kosong!', 'warning');
             return false;
-        }else if (nama == ""){
-            swal('WARNING', 'Nama Tidak boleh kosong!', 'warning');
+        }else if (satuan == ""){
+            swal('WARNING', 'Satuan Tidak boleh kosong!', 'warning');
+            return false;
+        }else if (harga == ""){
+            swal('WARNING', 'Harga Tidak boleh kosong!', 'warning');
             return false;
         }
     });

@@ -15,6 +15,10 @@ class CreatePenjualanDsTable extends Migration
     {
         Schema::create('penjualan_ds', function (Blueprint $table) {
             $table->id();
+            $table ->string('nama', 128);
+            $table ->decimal('quantity', $precision = 19, $scale = 6);
+            $table ->decimal('harga', $precision = 19, $scale = 6);
+            $table ->decimal('total', $precision = 19, $scale = 6);
             $table->timestamps();
         });
     }
