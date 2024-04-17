@@ -22,6 +22,10 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
+Route::post('/', [LoginController::class, 'postLogin'])->name('postlogin');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::group(['middleware' => ['auth']], function () {
 
 Route::get('customer', [DataCustomerController::class, 'index'])->name('customer');
 Route::post('/customerpost', [DataCustomerController::class, 'post'])->name('customerpost');
@@ -37,3 +41,9 @@ Route::post('/produk/delete/{produk}', [ProdukController::class, 'delete'])->nam
 Route::post('/getproduk', [ProdukController::class, 'getproduk'])->name('getproduk');
 
 Route::get('penjualan', [PenjualanController::class, 'index'])->name('penjualan');
+Route::post('penjualanpost', [PenjualanController::class, 'post'])->name('penjualanpost');
+Route::get('penjualanlist', [PenjualanController::class, 'list'])->name('penjualanlist');
+Route::get('/penjualan/{penjualan}/edit', [PenjualanController::class, 'getedit'])->name('penjualanedit');
+Route::post('/penjualan/{penjualan}', [PenjualanController::class, 'update'])->name('penjualanupdate');
+
+});

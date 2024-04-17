@@ -23,7 +23,7 @@
 
 <body>
     <section class="section">
-        <form action="#" method="POST">
+        <form action="{{ route('login') }}" method="POST">
         @csrf
         <div class="container mt-5">
             <div class="row">
@@ -41,8 +41,8 @@
                         <div class="card-body">
                             <form method="POST" action="#" class="needs-validation" novalidate="">
                                 <div class="form-group">
-                                    <label for="username">Username</label>
-                                    <input id="username" type="text" class="form-control" name="username" tabindex="1"
+                                    <label for="name">Username</label>
+                                    <input id="name" type="text" class="form-control" name="name" tabindex="1"
                                         required autofocus>
                                     <div class="invalid-feedback">
                                         Please fill in your username
