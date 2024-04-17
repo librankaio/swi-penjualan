@@ -32,6 +32,7 @@ Route::post('/customerpost', [DataCustomerController::class, 'post'])->name('cus
 Route::get('/customer/{customer}/edit', [DataCustomerController::class, 'getedit'])->name('customeredit');
 Route::post('/customer/{customer}', [DataCustomerController::class, 'update'])->name('customerupdate');
 Route::post('/customer/delete/{customer}', [DataCustomerController::class, 'delete'])->name('customerdelete');
+Route::post('/getcustomer', [DataCustomerController::class, 'getcustomer'])->name('getcustomer');
 
 Route::get('produk', [ProdukController::class, 'index'])->name('produk');
 Route::post('/produkpost', [ProdukController::class, 'post'])->name('produkpost');

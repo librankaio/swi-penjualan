@@ -65,7 +65,7 @@
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <label>Nama</label>
+                                                <label>Nama Penerima</label>
                                                 <input type="text" class="form-control" name="nama" id="nama">
                                             </div>
                                             <div class="form-group">
@@ -98,17 +98,17 @@
                                             <label>Harga Jual</label>
                                             <input type="text" class="form-control" id="hrg_jual" disabled>
                                         </div>
-                                        <div class="form-group">
-                                            <a href="" id="addItem">
-                                                <i class="fa fa-plus" style="font-size:18pt"></i>
-                                            </a>
-                                        </div>
                                     </div>
                                     <div class="col-md-6">                                
                                         <div class="form-group">
                                             <label>Satuan</label>
                                             <input type="text" class="form-control" id="satuan" disabled>
-                                        </div>                                
+                                        </div>      
+                                        <div class="form-group">
+                                            <a href="" id="addItem">
+                                                <i class="fa fa-plus" style="font-size:18pt"></i>
+                                            </a>
+                                        </div>                          
                                     </div>
                                 </div>
                             </div>
@@ -230,6 +230,33 @@
                                 // $("#hrg_jual").val(thousands_separators(response[i].hrgjual).toFixed(2));
                                 hrgjual = Number(response[i].hrgjual);
                                 $("#hrg_jual").val(thousands_separators(hrgjual.toFixed(0)));
+                            }
+                        }
+                        hide_loading()
+                    }
+                });
+            });
+
+            $("#pemesan").on('select2:select', function(e) {
+                var nama_pemesan = $(this).val();
+                console.log(nama_pemesan);
+                show_loading()
+                $.ajax({
+                    url: '{{ route('getcustomer') }}', 
+                    method: 'post', 
+                    data: {'nama_pemesan': nama_pemesan}, 
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}, 
+                    dataType: 'json', 
+                    success: function(response) {
+                        // console.log(nama_pemesan);
+                        console.log(response);
+                        for (i=0; i < response.length; i++) {
+                            if(response[i].nama_pemesan == nama_pemesan){
+                                $("#hp").val(response[i].phone);
+                                $("#nama").val(response[i].nama_penerima);
+                                $("#alamat").val(response[i].alamat);
+                                // $("#hrg_jual").val(thousands_separators(response[i].hrgjual).toFixed(2));
                             }
                         }
                         hide_loading()

@@ -45,4 +45,14 @@ class DataCustomerController extends Controller
         Customer::find($customer->id)->delete();
         return redirect()->route('customer')->with('success', 'Data berhasil di Delete');
     }
+
+    public function  getcustomer(Request $request){
+        $nama_pemesan = $request->nama_pemesan;
+        if($nama_pemesan == ''){
+            $produks = Customer::select('id','nama_pemesan','nama_penerima','phone','alamat',)->orderBy('nama_pemesan', 'asc')->limit(20)->get();
+        }else{
+            $produks = Customer::select('id','nama_pemesan','nama_penerima','phone','alamat',)->where('nama_pemesan','=',$nama_pemesan)->limit(20)->get();
+        }
+        return json_encode($produks);
+    }
 }
