@@ -4,6 +4,7 @@ use App\Http\Controllers\DataCustomerController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\StockController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,4 +49,5 @@ Route::get('/penjualan/{penjualan}/edit', [PenjualanController::class, 'getedit'
 Route::post('/penjualan/{penjualan}', [PenjualanController::class, 'update'])->name('penjualanupdate');
 Route::get('/penjualan/{penjualan}/print', [PenjualanController::class, 'printpdfpenjualan'])->name('penjualanprintmatrix');
 
+Route::get('stock', [StockController::class, 'index'])->name('stock');
 });

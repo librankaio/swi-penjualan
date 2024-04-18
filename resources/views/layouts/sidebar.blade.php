@@ -9,5 +9,8 @@
         </ul> --}}
         <li><a class="nav-link" href="{{ route('customer') }}"><i class="fas fa-cubes"></i> <span>Data Customer</span></a></li>
         <li><a class="nav-link" href="{{ route('produk') }}"><i class="fas fa-cubes"></i> <span>Produk</span></a></li>
+        <li><a class="nav-link" href="{{ route('stock') }}"><i class="fas fa-cubes"></i> <span>Tambah Stock</span></a></li>
         <li><a class="nav-link" href="{{ route('penjualan') }}"><i class="fas fa-cubes"></i> <span>Penjualan</span></a></li>
+        <li><a class="nav-link" href="{{ route('penjualan') }}"><i class="fas fa-cubes"></i> <span>Laporan Stock</span></a></li>
+        <li><a class="nav-link" href="{{ route('penjualan') }}"><i class="fas fa-cubes"></i> <span>Laporan Penjualan</span></a></li>
     </li>
