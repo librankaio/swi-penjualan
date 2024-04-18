@@ -60,7 +60,7 @@
                                                 <select class="form-control select2" name="pemesan" id="pemesan">
                                                     <option disabled selected>--Select Pemesan--</option>
                                                     @foreach($customers as $data => $item)                                        
-                                                    <option>{{ $item->nama_penerima }}</option>
+                                                    <option>{{ $item->nama_pemesan }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
