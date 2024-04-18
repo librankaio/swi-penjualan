@@ -72,9 +72,9 @@
                                             {{-- <a href="/penjualan/{{ $item->id }}/print"
                                                 class="btn btn-icon icon-left btn-success" target="_blank"><i class="far fa-print">
                                                     Print</i></a> --}}
-                                            <a href="/penjualan/{{ $item->id }}/printpdf"
+                                            <a href="/penjualan/{{ $item->id }}/print"
                                                 class="btn btn-icon icon-left btn-success" target="_blank"><i class="far fa-print">
-                                                    Print PDF</i></a>
+                                                     Print</i></a>
                                         </td>
                                     </tr>
                                     @endforeach

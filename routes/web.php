@@ -46,5 +46,6 @@ Route::post('penjualanpost', [PenjualanController::class, 'post'])->name('penjua
 Route::get('penjualanlist', [PenjualanController::class, 'list'])->name('penjualanlist');
 Route::get('/penjualan/{penjualan}/edit', [PenjualanController::class, 'getedit'])->name('penjualanedit');
 Route::post('/penjualan/{penjualan}', [PenjualanController::class, 'update'])->name('penjualanupdate');
+Route::get('/penjualan/{penjualan}/print', [PenjualanController::class, 'printpdfpenjualan'])->name('penjualanprintmatrix');
 
 });

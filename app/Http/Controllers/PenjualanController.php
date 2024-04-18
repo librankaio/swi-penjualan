@@ -6,6 +6,7 @@ use App\Models\Customer;
 use App\Models\Penjualan;
 use App\Models\Penjualan_d;
 use App\Models\Produk;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -126,5 +127,22 @@ class PenjualanController extends Controller
         Penjualan::find($penjualan->id)->delete();
         DB::delete('delete from penjualan_ds where idh = ?', [$penjualan->id] );
         return redirect()->route('produk')->with('success', 'Data berhasil di Delete');
+    }
+
+    public function printpdfpenjualan(Penjualan $penjualan){
+        // dd($penjualan);
+        $penjualands = Penjualan_d::where('idh','=',$penjualan->id)->get();
+        // dd($penjualands);
+        // 1 inch = 72 point
+        // 1 inch = 2.54 cm
+        // 10 cm = 10/2.54*72 = 283.464566929
+        // 20 cm = 10/2.54*72 = 566.929133858
+        $customPaper = array(0,0,226.7,850.3);
+        $pdf = Pdf::loadView('pages.Print.penjualanprintpdf', [
+            'penjualan' => $penjualan,
+            'penjualands'=> $penjualands,
+            // 'address'=> $address
+            ])->setPaper($customPaper, 'portrait');
+        return $pdf->stream("Penjualan/".$penjualan->no);
     }
 }
