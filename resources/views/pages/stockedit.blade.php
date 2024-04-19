@@ -32,16 +32,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>No Stock</label>
-                                                @foreach($nobons as $key => $code)
-                                                @php $codebon = $code->codebon @endphp
-                                                @endforeach
-                                                <input type="text" readonly class="form-control" name="no_stock" id="no_stock" value="{{ $code->codebon }}" >
+                                                <input type="text" readonly class="form-control" name="no_stock" id="no_stock" value="{{ $stock->no_stock }}" >
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Tanggal Stock</label>
-                                                <input type="date" class="form-control" name="tgl_stock" value="{{ date("Y-m-d") }}">
+                                                <input type="date" class="form-control" name="tgl_stock" value="{{ date("Y-m-d", strtotime($stock->no_stock)) }}">
                                             </div>
                                         </div>
                                     </div>
@@ -105,15 +102,25 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @php $counter = 0; @endphp
+                                            @for($i = 0; $i < sizeof($stockds); $i++) 
+                                            @php $counter++; @endphp 
+                                            <tr row_id="{{ $counter }}">
+                                                <th class='id-header border border-5' style='readonly:true;' headers="{{ $counter }}">{{ $counter }}</th>
+                                                <td class='border border-5'><input style='width:120px;' readonly form='thisform' class='namabrgclass form-control' name='nama_brg_d[]' type='text' value='{{ $stockds[$i]->nama }}'></td>
+                                                <td class='border border-5'><input style='width:120px;' form='thisform' class='row_qty qtyclass form-control' name='qty_d[]' id='qty_d_{{ $counter }}' type='text' value='{{ number_format($stockds[$i]->quantity, 0, '.', '') }}'></td>
+                                                <td class='border border-5'><input style='width:120px;' readonly form='thisform' class='satuanclass form-control' name='satuan_d[]' type='text' value='{{ $stockds[$i]->satuan }}'></td>
+                                                <td class="border border-5"><button title='Delete' class='delete btn btn-primary' value="{{ $counter }}"><i style='font-size:15pt;color:#ffff;' class='fa fa-trash'></i></button></td>
+                                                </tr>
+                                            @endfor
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                             <div class="card-footer text-right">                            
                                 <button class="btn btn-primary mr-1" type="submit" 
-                                formaction="{{ route('stockpost') }}" id="confirm">Save</button>                                
+                                formaction="/stock/{{ $stock->id }}" id="confirm">Update</button>                                
                                 <button class="btn btn-secondary" type="reset">Cancel</button>
-                                <a class="btn btn-warning mr-1" href="/stocklist">List</a>
                             </div>
                         </div>
                     </div>
@@ -163,7 +170,7 @@
     //CSRF TOKEN
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $(document).ready(function() {  
-            rowCount = $('#number_counter').val();
+            rowCount = parseInt({{ $counter}});
 
             $("#nama_brg").on('select2:select', function(e) {
                 var nama_brg = $(this).val();

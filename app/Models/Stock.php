@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Stock extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'no_stock',
+        'tgl_stock',
+    ];
 }

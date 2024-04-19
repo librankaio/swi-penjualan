@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DataCustomerController;
+use App\Http\Controllers\LaporanStockController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\ProdukController;
@@ -50,4 +51,11 @@ Route::post('/penjualan/{penjualan}', [PenjualanController::class, 'update'])->n
 Route::get('/penjualan/{penjualan}/print', [PenjualanController::class, 'printpdfpenjualan'])->name('penjualanprintmatrix');
 
 Route::get('stock', [StockController::class, 'index'])->name('stock');
+Route::post('stockpost', [StockController::class, 'post'])->name('stockpost');
+Route::get('stocklist', [StockController::class, 'list'])->name('stocklist');
+Route::get('/stock/{stock}/edit', [StockController::class, 'getedit'])->name('stockedit');
+Route::post('/stock/{stock}', [StockController::class, 'update'])->name('stockupdate');
+
+Route::get('lapstock', [LaporanStockController::class, 'index'])->name('lapstock');
+Route::get('rlaperoutletsearch', [ControllerReportPerOutlet::class, 'post'])->name('rlaperoutletpost');
 });

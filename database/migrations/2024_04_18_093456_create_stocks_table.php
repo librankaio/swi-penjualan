@@ -15,6 +15,8 @@ class CreateStocksTable extends Migration
     {
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
+            $table ->string('no_stock', 64)->charset('latin1')->collate('latin1_swedish_ci');
+            $table ->date('tgl_stock');
             $table->timestamps();
         });
     }

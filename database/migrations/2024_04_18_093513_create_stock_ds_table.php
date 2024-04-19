@@ -15,6 +15,10 @@ class CreateStockDsTable extends Migration
     {
         Schema::create('stock_ds', function (Blueprint $table) {
             $table->id();
+            $table->integer('idh');
+            $table ->string('nama', 128);
+            $table ->decimal('quantity', $precision = 19, $scale = 6);
+            $table ->string('satuan', 64);
             $table->timestamps();
         });
     }
