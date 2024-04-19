@@ -13,7 +13,7 @@ class StockController extends Controller
     public function index()
     {
         $barangs = Produk::all();
-        $nobons = DB::select("select fgetcode('penjualan') as codebon");
+        $nobons = DB::select("select fgetcode('stocks') as codebon");
         return view('pages.stock',[
             'barangs' => $barangs,
             'nobons' => $nobons
@@ -22,7 +22,7 @@ class StockController extends Controller
 
     public function post(Request $request){
         // dd($request->all());
-        $nostocks = DB::select("select fgetcode('penjualan') as codestock");
+        $nostocks = DB::select("select fgetcode('stocks') as codestock");
         foreach($nostocks as $nostock){
             $no_stock = $nostock->codestock;
         }
