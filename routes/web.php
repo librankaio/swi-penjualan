@@ -48,6 +48,7 @@ Route::post('penjualanpost', [PenjualanController::class, 'post'])->name('penjua
 Route::get('penjualanlist', [PenjualanController::class, 'list'])->name('penjualanlist');
 Route::get('/penjualan/{penjualan}/edit', [PenjualanController::class, 'getedit'])->name('penjualanedit');
 Route::post('/penjualan/{penjualan}', [PenjualanController::class, 'update'])->name('penjualanupdate');
+Route::post('/penjualan/delete/{penjualan}', [PenjualanController::class, 'delete'])->name('penjualandelete');
 Route::get('/penjualan/{penjualan}/print', [PenjualanController::class, 'printpdfpenjualan'])->name('penjualanprintmatrix');
 
 Route::get('stock', [StockController::class, 'index'])->name('stock');
@@ -55,6 +56,7 @@ Route::post('stockpost', [StockController::class, 'post'])->name('stockpost');
 Route::get('stocklist', [StockController::class, 'list'])->name('stocklist');
 Route::get('/stock/{stock}/edit', [StockController::class, 'getedit'])->name('stockedit');
 Route::post('/stock/{stock}', [StockController::class, 'update'])->name('stockupdate');
+Route::post('/stock/delete/{stock}', [StockController::class, 'delete'])->name('stockdelete');
 
 Route::get('lapstock', [LaporanStockController::class, 'index'])->name('lapstock');
 Route::get('rlaperoutletsearch', [ControllerReportPerOutlet::class, 'post'])->name('rlaperoutletpost');
