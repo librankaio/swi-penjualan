@@ -13,7 +13,7 @@
         <h1>Laporan Stock</h1>
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="#">Report</a></div>
-            <div class="breadcrumb-item"><a class="text-muted">Laporan Stock</a></div>
+            <div class="breadcrumb-item"><a class="text-muted">Laporan Penjualan</a></div>
         </div>
     </div>
     @php
@@ -62,7 +62,7 @@
                         <div class="row">
                             <div class="col-md-12 d-flex justify-content-end">                    
                                 <div class="form-group">
-                                    <button class="btn btn-primary mr-1" id="confirm" type="submit" formaction="/lapstockpost" onclick="show_loading()">View</button>
+                                    <button class="btn btn-primary mr-1" id="confirm" type="submit" formaction="/laporanpenjualanpost" onclick="show_loading()">View</button>
                                 </div>                                
                             </div>
                         </div>
@@ -88,13 +88,14 @@
                                 <thead>
                                     <tr>
                                         <th scope="col" class="border border-5" style="text-align: center;">No</th>
-                                        <th scope="col" class="border border-5" style="text-align: center;">Nama</th>
-                                        <th scope="col" class="border border-5" style="text-align: center;">Satuan</th>
-                                        <th scope="col" class="border border-5" style="text-align: center;">Stock Awal</th>
-                                        <th scope="col" class="border border-5" style="text-align: center;">Stock Akhir</th>
-                                        <th scope="col" class="border border-5" style="text-align: center;">Stock Masuk</th>
-                                        <th scope="col" class="border border-5" style="text-align: center;">Stock Keluar</th>
-                                        <th scope="col" class="border border-5" style="text-align: center;">Stock Akhir</th>
+                                        <th scope="col" class="border border-5" style="text-align: center;">No Stock</th>
+                                        <th scope="col" class="border border-5" style="text-align: center;">Tanggal Faktur</th>
+                                        <th scope="col" class="border border-5" style="text-align: center;">Pengiriman</th>
+                                        <th scope="col" class="border border-5" style="text-align: center;">Pemesanan</th>
+                                        <th scope="col" class="border border-5" style="text-align: center;">Phone</th>
+                                        <th scope="col" class="border border-5" style="text-align: center;">Nama Barang</th>
+                                        <th scope="col" class="border border-5" style="text-align: center;">Qty</th>
+                                        <th scope="col" class="border border-5" style="text-align: center;">Total</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -104,13 +105,14 @@
                                         @php $counter++ @endphp
                                         <tr>
                                             <th scope="row" class="border border-5" style="text-align: center;">{{ $counter }}</th>
-                                            <td class="border border-5" style="text-align: center;">{{ $item->name }}</td>
-                                            <td class="border border-5" style="text-align: center;">{{ $item->satuan }}</td>
-                                            <td class="border border-5" style="text-align: center;">{{ number_format($item->stock_awal, 0, '.', ',') }}</td>
-                                            <td class="border border-5" style="text-align: center;">{{ number_format($item->stock_akhir, 0, '.', ',') }}</td>
-                                            <td class="border border-5" style="text-align: center;">{{ number_format($item->stock_in, 0, '.', ',') }}</td>
-                                            <td class="border border-5" style="text-align: center;">{{ number_format($item->stock_out, 0, '.', ',') }}</td>
-                                            <td class="border border-5" style="text-align: center;">{{ number_format($item->stock_akhir, 0, '.', ',') }}</td>
+                                            <td class="border border-5" style="text-align: center;">{{ $item->no_bon }}</td>
+                                            <td class="border border-5" style="text-align: center;">{{ date("Y-m-d", strtotime($item->tgl_bon)) }}</td>
+                                            <td class="border border-5" style="text-align: center;">{{ $item->pengiriman }}</td>
+                                            <td class="border border-5" style="text-align: center;">{{ $item->pemesan }}</td>
+                                            <td class="border border-5" style="text-align: center;">{{ $item->phone }}</td>
+                                            <td class="border border-5" style="text-align: center;">{{ $item->nama }}</td>
+                                            <td class="border border-5" style="text-align: center;">{{ number_format($item->quantity, 0, '.', ',') }}</td>
+                                            <td class="border border-5" style="text-align: center;">{{ number_format($item->total, 0, '.', ',') }}</td>
                                         </tr>
                                     @endforeach
                                     @endisset
@@ -118,26 +120,50 @@
                             </table>
                             <br>
                         </div>                                              
-                    </div>       
+                    </div>      
                     <div class="col-12 col-md-6 col-lg-6 align-self-end">
                         <div class="row">
                             <div class="col-md-4">
-                                
+
                             </div>
-                            <div class="col-md-4">
+                            {{-- <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Total</label>
-                                <input type="text" class="form-control" value="0" readonly>
+                                    <label>Total Trans</label>
+                                    @if(isset($results))
+                                        @php $total_trans = 0; @endphp
+                                        @foreach($results as $item1)
+                                            @if($total_trans == 0)
+                                                @php $total_trans = $total_trans + $item1->jmltransaksi @endphp
+                                            @else
+                                                @php $total_trans = $total_trans + $item1->jmltransaksi @endphp
+                                            @endif
+                                        @endforeach
+                                            <input type="text" class="form-control" form="thisform" value="{{ number_format($total_trans) }}" readonly>
+                                    @else
+                                        <input type="text" class="form-control" form="thisform" readonly>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Total</label>
-                                    <input type="text" class="form-control" value="0" readonly>
+                                    <label>Total Penjualan</label>
+                                    @if(isset($results))
+                                        @php $total = 0; @endphp
+                                        @foreach($results as $item2)
+                                            @if($total == 0)
+                                                @php $total = $total + $item2->total @endphp
+                                            @else
+                                                @php $total = $total + $item2->total @endphp
+                                            @endif
+                                        @endforeach
+                                            <input type="text" class="form-control" form="thisform" value="{{ number_format($total) }}" readonly>
+                                    @else
+                                        <input type="text" class="form-control" form="thisform" readonly>
+                                    @endif
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
-                    </div>         
+                    </div>              
                     <div class="card-footer text-right">
                         {{-- @if($tpos_save == 'Y')
                             <button class="btn btn-primary mr-1" id="confirm" type="submit" formaction="{{ route('transpospost') }}">Submit</button>

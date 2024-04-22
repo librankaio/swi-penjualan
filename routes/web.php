@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DataCustomerController;
+use App\Http\Controllers\LaporanPenjualanController;
 use App\Http\Controllers\LaporanStockController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PenjualanController;
@@ -59,5 +60,8 @@ Route::post('/stock/{stock}', [StockController::class, 'update'])->name('stockup
 Route::post('/stock/delete/{stock}', [StockController::class, 'delete'])->name('stockdelete');
 
 Route::get('lapstock', [LaporanStockController::class, 'index'])->name('lapstock');
-Route::get('rlaperoutletsearch', [ControllerReportPerOutlet::class, 'post'])->name('rlaperoutletpost');
+Route::get('lapstockpost', [LaporanStockController::class, 'post'])->name('lapstockpost');
+
+Route::get('laporanpenjualan', [LaporanPenjualanController::class, 'index'])->name('laporanpenjualan');
+Route::get('laporanpenjualanpost', [LaporanPenjualanController::class, 'post'])->name('laporanpenjualanpost');
 });
