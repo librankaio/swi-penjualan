@@ -20,7 +20,7 @@ class LoginController extends Controller
             $username = Auth::User()->name;
             $request->session()->put('username', $username);
 
-            return redirect()->intended('/penjualan');
+            return redirect()->intended('/home');
         }
         return redirect()->back();
     }

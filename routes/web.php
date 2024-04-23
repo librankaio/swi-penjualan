@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DataCustomerController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LaporanPenjualanController;
 use App\Http\Controllers\LaporanStockController;
 use App\Http\Controllers\LoginController;
@@ -29,6 +30,8 @@ Route::post('/', [LoginController::class, 'postLogin'])->name('postlogin');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::group(['middleware' => ['auth']], function () {
+
+Route::get('home', [HomeController::class, 'index'])->name('home');
 
 Route::get('customer', [DataCustomerController::class, 'index'])->name('customer');
 Route::post('/customerpost', [DataCustomerController::class, 'post'])->name('customerpost');
