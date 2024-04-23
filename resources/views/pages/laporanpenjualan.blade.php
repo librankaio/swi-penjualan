@@ -124,30 +124,30 @@
                     <div class="col-12 col-md-6 col-lg-6 align-self-end">
                         <div class="row">
                             <div class="col-md-4">
-
+                                
                             </div>
-                            {{-- <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Total Trans</label>
-                                    @if(isset($results))
-                                        @php $total_trans = 0; @endphp
-                                        @foreach($results as $item1)
-                                            @if($total_trans == 0)
-                                                @php $total_trans = $total_trans + $item1->jmltransaksi @endphp
+                            <div class="col-md-4">
+                                @if(isset($results))
+                                        @php $quantity = 0; @endphp
+                                        @foreach($results as $item2)
+                                            @if($quantity == 0)
+                                                @php $quantity = $quantity + $item2->quantity @endphp
                                             @else
-                                                @php $total_trans = $total_trans + $item1->jmltransaksi @endphp
+                                                @php $quantity = $quantity + $item2->quantity @endphp
                                             @endif
                                         @endforeach
-                                            <input type="text" class="form-control" form="thisform" value="{{ number_format($total_trans) }}" readonly>
+                                            <div class="form-group">
+                                                <label>Total Quantity</label>
+                                            <input type="text" class="form-control" value="{{ number_format($quantity, 0, '.', ',') }}" readonly>
                                     @else
-                                        <input type="text" class="form-control" form="thisform" readonly>
+                                        <div class="form-group">
+                                            <label>Total Quantity</label>
+                                        <input type="text" class="form-control" value="0" readonly>
                                     @endif
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Total Penjualan</label>
-                                    @if(isset($results))
+                                @if(isset($results))
                                         @php $total = 0; @endphp
                                         @foreach($results as $item2)
                                             @if($total == 0)
@@ -156,14 +156,17 @@
                                                 @php $total = $total + $item2->total @endphp
                                             @endif
                                         @endforeach
-                                            <input type="text" class="form-control" form="thisform" value="{{ number_format($total) }}" readonly>
+                                            <div class="form-group">
+                                                <label>Total</label>
+                                            <input type="text" class="form-control" value="{{ number_format($total, 0, '.', ',') }}" readonly>
                                     @else
-                                        <input type="text" class="form-control" form="thisform" readonly>
+                                        <div class="form-group">
+                                            <label>Total</label>
+                                        <input type="text" class="form-control" value="0" readonly>
                                     @endif
-                                </div>
-                            </div> --}}
+                            </div>
                         </div>
-                    </div>              
+                    </div>                 
                     <div class="card-footer text-right">
                         {{-- @if($tpos_save == 'Y')
                             <button class="btn btn-primary mr-1" id="confirm" type="submit" formaction="{{ route('transpospost') }}">Submit</button>

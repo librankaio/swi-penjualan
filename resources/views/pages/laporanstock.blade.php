@@ -118,26 +118,7 @@
                             </table>
                             <br>
                         </div>                                              
-                    </div>       
-                    <div class="col-12 col-md-6 col-lg-6 align-self-end">
-                        <div class="row">
-                            <div class="col-md-4">
-                                
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Total</label>
-                                <input type="text" class="form-control" value="0" readonly>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Total</label>
-                                    <input type="text" class="form-control" value="0" readonly>
-                                </div>
-                            </div>
-                        </div>
-                    </div>         
+                    </div>          
                     <div class="card-footer text-right">
                         {{-- @if($tpos_save == 'Y')
                             <button class="btn btn-primary mr-1" id="confirm" type="submit" formaction="{{ route('transpospost') }}">Submit</button>
