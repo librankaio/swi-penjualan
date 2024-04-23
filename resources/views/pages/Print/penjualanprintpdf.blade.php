@@ -136,7 +136,7 @@
 </html>
 <body style="page-break-inside: avoid;">
   <center style="padding-top: 3px">
-      <img src="{{'data:image/png;base64,'.base64_encode(file_get_contents(public_path('/assets/img/cherry.jpg')))}}" alt="barcode" width="200" id="bgimg"/>
+      <img src="{{'data:image/png;base64,'.base64_encode(file_get_contents(public_path('/assets/img/Logo.png')))}}" alt="barcode" width="200" id="bgimg"/>
       <h1 id="text_code">{{ strtoupper($penjualan->no_bon) }}</h1>
       {{-- <h5 style="margin-bottom: 0;">{{ $address->alamat }}</h5> --}}
       {{-- <h5 style="margin-bottom: 0;">{{ $tpenjualanh->no }}</h5> --}}
